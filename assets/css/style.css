@@ -1,0 +1,152 @@
+* {
+     box-sizing: border-box;
+     font-family: inherit;
+}
+
+body {
+     max-width: 1024px;
+     margin: auto;
+     overflow-x: hidden;
+     font-family: 'Courier New', Courier, monospace;
+}
+
+
+.settings {
+     display: grid;
+     grid-template-columns: repeat(2, 1fr);
+     gap: 24px;
+
+     margin-bottom: 32px;
+}
+
+.settings fieldset {
+     display: flex;
+     grid-column: span 1;
+     flex-direction: column;
+     gap: 12px;
+
+     width: fit-content;
+}
+
+.settings legend {
+     font-style: italic;
+}
+
+.settings .field {
+     display: flex;
+     /* flex-direction: column; */
+     gap: 8px;
+
+     width: fit-content;
+}
+
+.field :is(select, input) {
+     width: fit-content;
+}
+
+.settings .buttons {
+     grid-column: span 2;
+     align-self: center;
+     justify-self: center;
+}
+
+span {
+     display: inline-block;
+     position: relative;
+}
+
+/* Loom styles */
+
+.loom {
+     width: 1024px;
+     height: 1024px;
+     /* background-color: #fff6ec; */
+     display: grid;
+     grid-template-columns: 1fr;
+     position: relative;
+
+     overflow: hidden;
+   
+     
+}
+
+.weft, .warp {
+     display: inline-block;
+     white-space: nowrap;
+     line-height: 1;
+
+     
+}
+
+.weft {
+     position: absolute;
+     transform-origin: left top;
+     
+     font-family: "Noto Sans Sinhala", sans-serif;
+     font-family: "Noto Serif Sinhala", serif;
+
+     font-size: 1.12rem;
+
+     transform: rotate(-90deg);
+}
+
+.warp {
+     font-family: "Epilogue";
+
+     font-size: 1.4rem;
+}
+
+.dragger {
+     display: inline-block;
+     width: 12px;
+     height: 24px;
+     background-color: rebeccapurple;
+}
+
+/* Colours */
+
+.primary.red {
+     background-color: rgba(141, 27, 61, 0.5);
+     /* color: white; */
+
+}
+
+.primary.orange {
+     background-color: rgba(255, 130, 0, 0.5);
+}
+
+.primary.gold {
+     background-color: rgba(253, 185, 19, 0.5);
+}
+
+.primary.green {
+     background-color: rgba(0, 120, 71, 0.5);
+}
+
+.primary.blue {
+     background-color: rgba(0, 36, 125, 0.5);
+     /* color: white;   */
+}
+
+.secondary.red {
+     color: rgba(141, 27, 61, 1);
+     /* color: white; */
+
+}
+
+.secondary.orange {
+     color: rgba(255, 130, 0, 1);
+}
+
+.secondary.gold {
+     color: rgba(253, 185, 19, 1);
+}
+
+.secondary.green {
+     color: rgba(0, 120, 71, 1);
+}
+
+.secondary.blue {
+     color: rgba(0, 36, 125, 1);
+     /* color: white;   */
+}

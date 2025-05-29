@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Type Here Interactive Poster</title>
+
+
+     <!-- GSAP scripts -->
+     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/Draggable.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script> 
+     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/MotionPathPlugin.min.js"></script>
+
+     <!-- Google Fonts -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&family=Noto+Sans+Sinhala:wght@100..900&family=Noto+Serif+Sinhala:wght@100..900&display=swap" rel="stylesheet">
+     
+     
+     <!-- Style sheet -->
+     <link rel="stylesheet" href="/assets/css/style.css">
+
+     <!-- Script file -->
+     <script src="assets/js/script.js" defer></script>
+</head>
+<body>
+     <header>
+          <a href="vibe-code-v1.html">Vibe code 1</a> | 
+          <a href="vibe-code-v2.html">Vibe code 2</a> |
+          <a href="vibe-code-v3.html">Vibe code 3</a> 
+
+     </header>
+     <main>
+          <h1>The Typographic Loom</h1>
+          <!-- <span id="drag1" class="vertical">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</span>
+
+          <svg viewBox="0 0 600 200">
+               <path id="curve" fill="none" stroke="#ccc" d="M20,100 C150,0 450,200 580,100"/>
+               <text>
+                    <textPath xlink:href="#path">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</textPath>
+               </text>
+          </svg> -->
+          <section class="settings">
+               <!-- <input type="color" name="colour-picker" id="col-pick"> -->
+              
+               <fieldset>
+                    <legend>Options for weft (vertical)</legend>
+                    <div class="field">
+                         <label for="num-threads">Number of threads</label>
+                         <input type="text" inputmode="numeric" pattern="[0-9]*" id="num-weft" name="num-threads" min="1" max="23" value="12">
+                    </div>
+                    <div class="field">
+                         <label for="primary-weft-col">Primary thread colour</label>
+                         <select name="colours" id="primary-weft-col">
+                              <option value="red" selected>🔴 Red</option>
+                              <option value="orange">🟠 Orange</option>
+                              <option value="gold">🟡 Golden Yellow</option>
+                              <option value="green">🟢 Green</option>
+                              <option value="blue">🔵 Blue</option>
+                         </select>
+                    </div>
+                    <div class="field">
+                         <label for="secondary-weft-col">Secondary thread colour</label>
+                         <select name="colours" id="secondary-weft-col">
+                              <option value="red">🔴 Red</option>
+                              <option value="orange">🟠 Orange</option>
+                              <option value="gold" selected>🟡 Golden Yellow</option>
+                              <option value="green">🟢 Green</option>
+                              <option value="blue">🔵 Blue</option>
+                         </select>
+                    </div>
+               </fieldset>
+               <fieldset>
+                    <legend>Options for warp (horizontal)</legend>
+                    <div class="field">
+                         <label for="num-threads">Number of threads</label>
+                         <input type="text" inputmode="numeric" pattern="[0-9]*" id="num-warp" name="num-threads" min="1" max="23" value="12">
+                    </div>
+                    <div class="field">
+                         <label for="primary-warp-col">Primary thread colour</label>
+                         <select name="colours" id="primary-warp-col">
+                              <option value="red">🔴 Red</option>
+                              <option value="orange">🟠 Orange</option>
+                              <option value="gold">🟡 Golden Yellow</option>
+                              <option value="green">🟢 Green</option>
+                              <option value="blue" selected>🔵 Blue</option>
+                         </select>
+                    </div>
+                    <div class="field">
+                         <label for="secondary-warp-col">Secondary thread colour</label>
+                         <select name="colours" id="secondary-warp-col">
+                              <option value="red" selected>🔴 Red</option>
+                              <option value="orange">🟠 Orange</option>
+                              <option value="gold">🟡 Golden Yellow</option>
+                              <option value="green">🟢 Green</option>
+                              <option value="blue">🔵 Blue</option>
+                         </select>
+                    </div>
+               </fieldset>
+               <div class="buttons">
+                    <button id="btn-gen-loom" formaction="#">Create Loom</button>
+                    <!-- <button id="btn-weave">Weave for me!</button> -->
+               </div>
+          </section>
+           <section class="loom">
+          </section>
+          
+     </main>
+</body>
+</html>
