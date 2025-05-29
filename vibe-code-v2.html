@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Draggable Span on Path</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2rem;
+    }
+    #container {
+      position: relative;
+      width: 600px;
+      height: 200px;
+    }
+    svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .draggable-span {
+      position: absolute;
+      padding: 8px 12px;
+      background: #f0f0f0;
+      border-radius: 8px;
+      cursor: grab;
+      font-size: 18px;
+      display: inline-flex;
+      gap: 6px;
+    }
+    .draggable-span span {
+      display: inline-block;
+      transition: transform 0.3s;
+    }
+  </style>
+</head>
+<body>
+
+<div id="container">
+  <svg viewBox="0 0 600 200">
+    <path id="path" d="M20,100 C150,0 450,200 580,100" stroke="#ccc" fill="none"/>
+  </svg>
+
+  <div class="draggable-span" id="dragger">
+    <span>D</span><span>r</span><span>a</span><span>g</span><span>!</span>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/MotionPathPlugin.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
+
+<script>
+  gsap.registerPlugin(MotionPathPlugin, Draggable);
+
+  const dragger = document.getElementById("dragger");
+  const wordSpans = dragger.querySelectorAll("span");
+
+  // Initial motion path positioning
+  gsap.set(dragger, {
+    motionPath: {
+      path: "#path",
+      align: "#path",
+      alignOrigin: [0.5, 0.5],
+      start: 0
+    }
+  });
+
+  // Create draggable
+  Draggable.create(dragger, {
+    type: "x",
+    trigger: dragger,
+    onDrag: function () {
+      // Update position along the path using progress (this.x is relative to the container)
+      const progress = gsap.utils.clamp(0, 1, this.x / 580);
+      gsap.set(dragger, {
+        motionPath: {
+          path: "#path",
+          align: "#path",
+          alignOrigin: [0.5, 0.5],
+          start: progress
+        }
+      });
+
+      // Animate words on each drag
+      animateLetters();
+    }
+  });
+
+  function animateLetters() {
+    gsap.fromTo(wordSpans, {
+      scale: 1,
+      y: 0
+    }, {
+      scale: 1.3,
+      y: -5,
+      stagger: 0.05,
+      duration: 0.2,
+      yoyo: true,
+      repeat: 1,
+      ease: "power1.out"
+    });
+  }
+</script>
+
+</body>
+</html>
