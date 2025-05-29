@@ -1,4 +1,5 @@
-gsap.registerPlugin(Draggable, SplitText, MotionPathPlugin);
+// gsap.registerPlugin(Draggable, SplitText, MotionPathPlugin);
+gsap.registerPlugin(Draggable,InertiaPlugin);
 
 // Collect all the relevant HTML elements
 // Containers for the loom
@@ -17,10 +18,12 @@ const secondaryWarpColour = document.querySelector('#secondary-warp-col');
 
 // The buttons for generating the loom and weaving
 const generateLoomButton = document.querySelector('#btn-gen-loom');
+const weaveButton = document.querySelector('#btn-weave');
 
 const spacing = 40;
 const wrapOffset = 48;
 
+// Create the loom
 generateLoomButton.addEventListener('click', () => {
     // Clear existing threads    
     loom.innerHTML = '';
@@ -40,10 +43,22 @@ generateLoomButton.addEventListener('click', () => {
         addHTMLThread(i, 'warp', loom);
     }
 
+    weaveButton.disabled = false;
 });
 
+// Weave the fabric
+weaveButton.addEventListener('click', () => {
+    // weaveThreadsCurtain();
+    weaveThreads();
+
+    weaveButton.disabled = true;
+});
+
+
+// Create the loom
 function addHTMLThread(i,type, threadContainer) {
 
+    // Create the wrapper for the thread - used to drag each thread
     let threadWrapper = document.createElement('div');
     threadWrapper.classList.add('thread-wrapper');
 
@@ -89,6 +104,7 @@ function addHTMLThread(i,type, threadContainer) {
 
             Draggable.create(threadWrapper, {
                 type: "y",
+                intertia: true,
                 bounds: { minY, maxY }
             });
         });
@@ -127,8 +143,71 @@ function addHTMLThread(i,type, threadContainer) {
 
             Draggable.create(threadWrapper, {
                 type: "x",
+                inertia: true,
                 bounds: {minX:0, maxX:maxX}
             });
         });
     }
+}
+
+
+// Functions to weave threads
+// Weave alternate threads together
+function weaveThreads() {
+
+  const weftThreads = Array.from(document.querySelectorAll('.thread-wrapper .weft'));
+  const warpThreads = Array.from(document.querySelectorAll('.thread-wrapper .warp'));
+
+  const minLength = Math.min(weftThreads.length, warpThreads.length);
+  const combined = [];
+
+  for (let i = 0; i < minLength; i++) {
+    combined.push(weftThreads[i]);
+    combined.push(warpThreads[i]);
+  }
+
+  // If one set is longer, append the remaining
+  if (weftThreads.length > minLength) {
+    combined.push(...weftThreads.slice(minLength));
+  } else if (warpThreads.length > minLength) {
+    combined.push(...warpThreads.slice(minLength));
+  }
+
+  gsap.to(combined, {
+    duration: 3,
+    y: (i, target) => target.classList.contains('weft') ? 1024 : "+=0", // weft moves, warp stays
+    x: (i, target) => target.classList.contains('warp') ? -12 : "+=0", // warp moves, weft stays
+    ease: "sine.inOut",
+    stagger: {
+      each: 0.05
+    }
+  });
+
+}
+
+// Weave threads like a curtain
+function weaveThreadsCurtain() {
+    //Get all the threads
+    const weftThreads = document.querySelectorAll(".weft");
+    const warpThreads = document.querySelectorAll(".warp");
+
+    gsap.to(weftThreads, {
+        duration: 3,
+        y: 1024,
+        ease: "sine.inOut",
+        stagger: {
+            each: 0.05,
+            from: "left"
+        }
+    });
+
+    gsap.to(warpThreads, {
+        duration: 3,
+        x: 0,
+        ease: "sine.inOut",
+        stagger: {
+            each: 0.05,
+            from: "top"
+        }
+    });
 }
