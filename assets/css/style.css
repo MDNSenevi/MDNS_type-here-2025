@@ -83,20 +83,18 @@ span {
      gap: 8px;    
 }
 
-.weft {
+.warp {
      position: absolute;
      transform-origin: left top;
-     
+      transform: rotate(-90deg);
+
      font-family: "Noto Sans Sinhala", sans-serif;
-     font-family: "Noto Serif Sinhala", serif;
 
      font-size: 1.12rem;
 
-     transform: rotate(-90deg);
-
 }
 
-.warp {
+.weft {
      font-family: "Epilogue";
 
      font-size: 1.4rem;
@@ -140,28 +138,32 @@ span {
 
 .primary.blue {
      background-color: rgba(0, 36, 125, 0.5);
-     /* color: white;   */
+
 }
 
 .secondary.red {
      color: rgba(141, 27, 61, 1);
-     /* color: white; */
+     background-color: rgba(255, 255, 255, 0.8);
+
 
 }
 
 .secondary.orange {
      color: rgba(255, 130, 0, 1);
+     background-color: rgba(255, 255, 255, 0.8);
 }
 
 .secondary.gold {
      color: rgba(253, 185, 19, 1);
+     background-color: rgba(255, 255, 255, 0.8);
 }
 
 .secondary.green {
      color: rgba(0, 120, 71, 1);
+     background-color: rgba(255, 255, 255, 0.8);
 }
 
 .secondary.blue {
      color: rgba(0, 36, 125, 1);
-     /* color: white;   */
+     background-color: rgba(255, 255, 255, 0.8);
 }

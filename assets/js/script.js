@@ -72,7 +72,7 @@ function addHTMLThread(i,type, threadContainer) {
     // Set wrapper as absolute so we can move it
     threadWrapper.style.position = "absolute";
 
-    if (type === 'weft') {
+    if (type === 'warp') {
         if ((i % 8) < 5) {
             thread.classList.add(primaryWeftColour.value);
             thread.classList.add("primary");
@@ -109,7 +109,7 @@ function addHTMLThread(i,type, threadContainer) {
             });
         });
     }
-    else if (type === 'warp') {
+    else if (type === 'weft') {
 
         if ((i%8) < 5) {
             thread.classList.add(primaryWarpColour.value);
@@ -175,8 +175,8 @@ function weaveThreads() {
 
   gsap.to(combined, {
     duration: 3,
-    y: (i, target) => target.classList.contains('weft') ? 1024 : "+=0", // weft moves, warp stays
-    x: (i, target) => target.classList.contains('warp') ? -12 : "+=0", // warp moves, weft stays
+    y: (i, target) => target.classList.contains('warp') ? 1014 : "+=0", // warp moves, weft stays
+    x: (i, target) => target.classList.contains('weft') ? -12 : "+=0", // weft moves, warp stays
     ease: "sine.inOut",
     stagger: {
       each: 0.05
